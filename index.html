@@ -142,6 +142,41 @@
         .gallery-pair-container:hover {
             transform: translateY(-5px); /* Lift effect on hover */
         }
+
+        /* Styles for the image wrapper and images within the gallery */
+        .gallery-image-wrapper {
+            width: 100%; /* Default to full width on small screens */
+            display: flex; /* Ensure flex properties apply */
+            flex-direction: column; /* Stack image and text vertically */
+            align-items: center; /* Center image and text horizontally */
+        }
+
+        .gallery-image-wrapper img {
+            width: 100%; /* Image takes full width of its wrapper */
+            height: 180px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for individual images */
+            max-width: 100%; /* Ensure image doesn't overflow its container */
+        }
+
+        /* Adjust individual image wrapper width for responsiveness within pairs on larger screens */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .gallery-pair-container .gallery-image-wrapper {
+                width: 48%; /* Adjust width for side-by-side on larger screens (accounting for gap) */
+            }
+            .gallery-image-wrapper img {
+                height: 150px; /* Slightly smaller height for side-by-side on sm */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .gallery-pair-container .gallery-image-wrapper {
+                width: 48%; /* Maintain width for side-by-side */
+            }
+            .gallery-image-wrapper img {
+                height: 180px; /* Restore original height on large screens */
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -280,12 +315,12 @@
                     <div class="gallery-pair-container bg-black bg-opacity-10 p-4 rounded-lg shadow-md">
                         <h3 class="text-xl font-semibold text-accent-red mb-4 text-center">Underarm Wax 1</h3>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <div class="gallery-image-wrapper flex flex-col items-center w-full sm:w-1/2">
-                                <img src="489229771_17876368626299069_4285314601314814540_n.jpg" alt="Before Image 1" class="rounded-lg w-full h-[180px] object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                            <div class="gallery-image-wrapper">
+                                <img src="489229771_17876368626299069_4285314601314814540_n.jpg" alt="Before Image 1" class="rounded-lg object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
                                 <p class="mt-2 text-lg font-semibold text-gray-200">Before</p>
                             </div>
-                            <div class="gallery-image-wrapper flex flex-col items-center w-full sm:w-1/2">
-                                <img src="488393722_17876368638299069_8799755131295586365_n.jpg" alt="After Image 1" class="rounded-lg w-full h-[180px] object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                            <div class="gallery-image-wrapper">
+                                <img src="488393722_17876368638299069_8799755131295586365_n.jpg" alt="After Image 1" class="rounded-lg object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
                                 <p class="mt-2 text-lg font-semibold text-gray-200">After</p>
                             </div>
                         </div>
@@ -295,12 +330,12 @@
                     <div class="gallery-pair-container bg-black bg-opacity-10 p-4 rounded-lg shadow-md">
                         <h3 class="text-xl font-semibold text-accent-red mb-4 text-center">Underarm Wax 2</h3>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <div class="gallery-image-wrapper flex flex-col items-center w-full sm:w-1/2">
-                                <img src="488418153_17876368647299069_4270973664337992618_n.jpg" alt="Before Image 2" class="rounded-lg w-full h-[180px] object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                            <div class="gallery-image-wrapper">
+                                <img src="488418153_17876368647299069_4270973664337992618_n.jpg" alt="Before Image 2" class="rounded-lg object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
                                 <p class="mt-2 text-lg font-semibold text-gray-200">Before</p>
                             </div>
-                            <div class="gallery-image-wrapper flex flex-col items-center w-full sm:w-1/2">
-                                <img src="488453417_17876368659299069_4877753519303280565_n.jpg" alt="After Image 2" class="rounded-lg w-full h-[180px] object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                            <div class="gallery-image-wrapper">
+                                <img src="488453417_17876368659299069_4877753519303280565_n.jpg" alt="After Image 2" class="rounded-lg object-cover" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
                                 <p class="mt-2 text-lg font-semibold text-gray-200">After</p>
                             </div>
                         </div>
