@@ -45,15 +45,18 @@
                 30% 10%, 75% 80%, 10% 50%, /* Stars/dust */
                 90% 20%, 20% 80%, 50% 50%; /* Nebulae */
             background-attachment: fixed; /* Keep background fixed when scrolling */
-
-            /* Fade-in animation */
-            animation: fade-in 1.5s ease-out forwards;
         }
 
-        /* Keyframes for fade-in animation */
-        @keyframes fade-in {
+        /* Keyframes for fade-in animation (for content sections) */
+        @keyframes fade-in-content {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* Class to apply for fade-in effect on content sections */
+        .fade-in-content {
+            opacity: 0; /* Start invisible */
+            animation: fade-in-content 0.5s ease-out forwards; /* Apply animation */
         }
 
         /* Custom red shades for the new theme */
@@ -107,9 +110,51 @@
         /* Custom glow for the button (already defined, now also applied to h1) */
         .button-glow-white {
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out; /* Add transition for tap effect */
         }
         .button-glow-white:hover {
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        /* Soft tap effect */
+        .button-glow-white:active {
+            transform: scale(0.98); /* Slightly shrink on tap */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 15px rgba(255, 255, 255, 0.1); /* Reduce glow on tap */
+        }
+
+        /* Gallery specific styles (from previous gallery.html) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid columns */
+            gap: 1rem; /* Gap between images */
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 150px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.03); /* Slight zoom on hover */
+        }
+
+        /* Adjust grid for larger screens */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .gallery-item img {
+                height: 200px;
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .gallery-item img {
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -120,15 +165,20 @@
             <h1 class="text-5xl sm:text-6xl font-extrabold text-primary-red mb-4">
                 Waxedxnancy
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-200 mb-6">Achieve silky smooth skin with professional care.</p>
-            <!-- Gallery Button -->
-            <a href="#gallery" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block">
-                Gallery
-            </a>
+            <p class="text-xl sm:text-2xl text-gray-200 mb-6" id="header-subtitle">Achieve silky smooth skin with professional care.</p>
+            <!-- Navigation Buttons -->
+            <div id="nav-buttons" class="space-x-4">
+                <a href="#" id="gallery-button" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block">
+                    Gallery
+                </a>
+                <a href="#" id="home-button" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block hidden">
+                    Back to Home
+                </a>
+            </div>
         </header>
 
-        <!-- Main Content Area -->
-        <main class="w-full max-w-4xl bg-black bg-opacity-20 p-8 rounded-2xl shadow-xl shadow-lg-red space-y-10 text-gray-200">
+        <!-- Main Content Area (Home Page) -->
+        <main id="home-content" class="w-full max-w-4xl bg-black bg-opacity-20 p-8 rounded-2xl shadow-xl shadow-lg-red space-y-10 text-gray-200">
 
             <!-- Must Follow to Book Section -->
             <section class="border-b pb-8 border-gray-700">
@@ -232,6 +282,39 @@
             </section>
         </main>
 
+        <!-- Gallery Content Area -->
+        <main id="gallery-content" class="w-full max-w-4xl bg-black bg-opacity-20 p-8 rounded-2xl shadow-xl shadow-lg-red space-y-10 text-gray-200 hidden">
+            <section>
+                <h2 class="text-3xl sm:text-4xl font-bold text-accent-red mb-6 flex items-center">
+                    <svg class="w-8 h-8 mr-3 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L20 16m-2-6a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Our Work
+                </h2>
+                <div class="gallery-grid">
+                    <!-- Placeholder Gallery Items -->
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x300/E53E3E/FFFFFF?text=Image+1" alt="Gallery Image 1" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x300/E53E3E/FFFFFF?text=Image+2" alt="Gallery Image 2" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x300/E53E3E/FFFFFF?text=Image+3" alt="Gallery Image 3" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x300/E53E3E/FFFFFF?text=Image+4" alt="Gallery Image 4" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x300/E53E3E/FFFFFF?text=Image+5" alt="Gallery Image 5" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/300x300/E53E3E/FFFFFF?text=Image+6" alt="Gallery Image 6" onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+                    </div>
+                    <!-- Add more gallery items as needed -->
+                </div>
+                <p class="text-center text-gray-400 mt-8 text-lg">More images coming soon!</p>
+            </section>
+        </main>
+
         <!-- Footer Section -->
         <footer class="w-full max-w-4xl text-center mt-12 p-6 bg-black bg-opacity-20 text-gray-200 rounded-2xl shadow-xl shadow-lg-red">
             <h2 class="text-2xl font-bold mb-4">Contact Waxedxnancy</h2>
@@ -244,7 +327,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Get references to elements
+            // Get references to elements for home page functionality
             const servicesTableBody = document.getElementById('servicesTableBody');
             const totalPriceDisplay = document.getElementById('totalPriceDisplay');
             const selectedServicesList = document.getElementById('selectedServicesList');
@@ -252,7 +335,6 @@
             const noSelectionMessage = document.getElementById('noSelectionMessage');
 
             let totalPrice = 0;
-            // Using a Map to store selected services for easier management (serviceName -> price)
             let selectedServices = new Map();
 
             /**
@@ -269,7 +351,7 @@
                     selectedServices.forEach((price, service) => {
                         const li = document.createElement('p');
                         li.textContent = `${service}: $${price.toFixed(2)}`;
-                        li.classList.add('text-gray-200'); // Adjusted for new color scheme
+                        li.classList.add('text-gray-200');
                         selectedServicesList.appendChild(li);
                     });
                 }
@@ -278,19 +360,15 @@
             // Event listener for clicking on price cells
             servicesTableBody.addEventListener('click', (event) => {
                 const clickedCell = event.target.closest('.price-cell');
-
-                // Check if a price cell was clicked and it has a data-price attribute
                 if (clickedCell && clickedCell.dataset.price) {
                     const serviceName = clickedCell.dataset.service;
                     const price = parseFloat(clickedCell.dataset.price);
 
                     if (clickedCell.classList.contains('selected')) {
-                        // Service is already selected, so deselect it
                         clickedCell.classList.remove('selected');
                         totalPrice -= price;
                         selectedServices.delete(serviceName);
                     } else {
-                        // Service is not selected, so select it
                         clickedCell.classList.add('selected');
                         totalPrice += price;
                         selectedServices.set(serviceName, price);
@@ -303,15 +381,67 @@
             resetButton.addEventListener('click', () => {
                 totalPrice = 0;
                 selectedServices.clear();
-                // Remove 'selected' class from all price cells
                 document.querySelectorAll('.price-cell.selected').forEach(cell => {
                     cell.classList.remove('selected');
                 });
                 updateDisplay();
             });
 
-            // Initial display update
+            // Initial display update for home page
             updateDisplay();
+
+            // --- Gallery Page Functionality ---
+            const homeContent = document.getElementById('home-content');
+            const galleryContent = document.getElementById('gallery-content');
+            const galleryButton = document.getElementById('gallery-button');
+            const homeButton = document.getElementById('home-button');
+            const headerSubtitle = document.getElementById('header-subtitle');
+
+            // Function to show content with fade-in
+            function showContent(contentToShow, subtitleText) {
+                // Hide both first to ensure transition
+                homeContent.classList.add('hidden');
+                galleryContent.classList.add('hidden');
+
+                // Remove fade-in class from both before showing
+                homeContent.classList.remove('fade-in-content');
+                galleryContent.classList.remove('fade-in-content');
+
+                // Update subtitle
+                headerSubtitle.textContent = subtitleText;
+
+                // Show the target content
+                contentToShow.classList.remove('hidden');
+
+                // Trigger reflow to ensure opacity change is registered before animation
+                void contentToShow.offsetWidth; // forces reflow
+
+                // Add fade-in class
+                contentToShow.classList.add('fade-in-content');
+
+                // Toggle buttons
+                if (contentToShow === homeContent) {
+                    galleryButton.classList.remove('hidden');
+                    homeButton.classList.add('hidden');
+                } else { // contentToShow === galleryContent
+                    galleryButton.classList.add('hidden');
+                    homeButton.classList.remove('hidden');
+                }
+            }
+
+            // Event listeners for navigation buttons
+            galleryButton.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                showContent(galleryContent, "Gallery of Professional Waxing Services");
+            });
+
+            homeButton.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                showContent(homeContent, "Achieve silky smooth skin with professional care.");
+            });
+
+            // Initial state: show home content on page load
+            showContent(homeContent, "Achieve silky smooth skin with professional care.");
         });
     </script>
 </body>
