@@ -35,7 +35,7 @@
 
             /* Using viewport units (vw) for background size makes them responsive. */
             background-size:
-                110vw 110vh, /* Central glow - Adjusted for better mobile visibility */
+                200vw 200vh, /* Central glow - Adjusted for better mobile visibility */
                 0.8vw 0.8vw, 0.9vw 0.9vw, 0.7vw 0.7vw, /* Stars/dust */
                 60vw 60vw, 70vw 70vw, 80vw 80vw; /* Nebulae */
             background-repeat: no-repeat;
@@ -111,9 +111,10 @@
         .button-glow-white {
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
             transition: all 0.2s ease-in-out; /* Add transition for tap effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Added for visible border */
         }
         .button-glow-white:hover {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 35px rgba(255, 255, 255, 0.5); /* Enhanced glow on hover */
         }
         /* Soft tap effect */
         .button-glow-white:active {
