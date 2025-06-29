@@ -22,7 +22,7 @@
             color: #E0E0E0; /* Light gray text for contrast */
             /* Complex background gradients for a "fire" aura effect */
             background-image:
-                /* Radiant red glow fading to black */
+                /* Radiant red glow fading to black - Increased size for better mobile presence */
                 radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 70%, #000000 100%),
                 /* Larger, slightly brighter stars/dust clouds */
                 radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.07) 0%, transparent 10%),
@@ -35,7 +35,7 @@
 
             /* Using viewport units (vw) for background size makes them responsive. */
             background-size:
-                100vw 100vh, /* Central glow */
+                110vw 110vh, /* Central glow - Adjusted for better mobile visibility */
                 0.8vw 0.8vw, 0.9vw 0.9vw, 0.7vw 0.7vw, /* Stars/dust */
                 60vw 60vw, 70vw 70vw, 80vw 80vw; /* Nebulae */
             background-repeat: no-repeat;
@@ -142,27 +142,6 @@
         .gallery-pair-container:hover {
             transform: translateY(-5px); /* Lift effect on hover */
         }
-
-        /* Removed max-width and height from here, now controlled by Tailwind on img tag */
-        /* .gallery-image-wrapper img {
-            width: 100%;
-            object-fit: cover;
-            border-radius: 0.75rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        } */
-
-        /* Adjust individual image sizes for responsiveness within pairs */
-        /* These media queries are less critical now with w-full h-[180px] on img and w-full sm:w-1/2 on wrapper */
-        /* @media (min-width: 640px) {
-            .gallery-image-wrapper img {
-                height: 150px;
-            }
-        }
-        @media (min-width: 1024px) {
-            .gallery-image-wrapper img {
-                height: 180px;
-            }
-        } */
     </style>
 </head>
 <body class="antialiased">
@@ -174,11 +153,11 @@
             </h1>
             <p class="text-xl sm:text-2xl text-gray-200 mb-6" id="header-subtitle">Achieve silky smooth skin with professional care.</p>
             <!-- Navigation Buttons -->
-            <div id="nav-buttons" class="space-x-4">
-                <a href="#" id="gallery-button" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block">
+            <div id="nav-buttons" class="space-x-4 flex justify-center">
+                <a href="#" id="gallery-button" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block flex-shrink-0">
                     Gallery
                 </a>
-                <a href="#" id="home-button" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block hidden">
+                <a href="#" id="home-button" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block flex-shrink-0 hidden">
                     Back to Home
                 </a>
             </div>
