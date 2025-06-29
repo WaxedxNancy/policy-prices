@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waxedxnancy - Professional Waxing Services</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for headings, Lato for body, Great Vibes for main title -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red-primary: #E53E3E; /* Stronger Red */
+            --red-accent: #FC8181; /* Lighter Red for accents/icons */
+            --red-light: #FED7D7; /* Very light red for subtle highlights */
+            --red-dark: #C53030; /* Darker red for hover states */
+        }
+
+        body {
+            font-family: 'Lato', sans-serif; /* Default readable font for the entire body */
+            background-color: #000000; /* Pure black base */
+            color: #E0E0E0; /* Light gray text for contrast */
+            /* Complex background gradients for a "fire" aura effect */
+            background-image:
+                /* Radiant red glow fading to black */
+                radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 70%, #000000 100%),
+                /* Larger, slightly brighter stars/dust clouds */
+                radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.07) 0%, transparent 10%),
+                radial-gradient(circle at 75% 80%, rgba(255, 255, 255, 0.07) 0%, transparent 10%),
+                radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.07) 0%, transparent 10%),
+                /* More defined, fiery red nebulae */
+                radial-gradient(ellipse at 90% 20%, rgba(255, 60, 60, 0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 20% 80%, rgba(255, 60, 60, 0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 60, 60, 0.05) 0%, transparent 55%);
+
+            /* Using viewport units (vw) for background size makes them responsive. */
+            background-size:
+                100vw 100vh, /* Central glow */
+                0.8vw 0.8vw, 0.9vw 0.9vw, 0.7vw 0.7vw, /* Stars/dust */
+                60vw 60vw, 70vw 70vw, 80vw 80vw; /* Nebulae */
+            background-repeat: no-repeat;
+            /* Scattered positions for stars and nebulae */
+            background-position:
+                center center, /* Central glow */
+                30% 10%, 75% 80%, 10% 50%, /* Stars/dust */
+                90% 20%, 20% 80%, 50% 50%; /* Nebulae */
+            background-attachment: fixed; /* Keep background fixed when scrolling */
+
+            /* Fade-in animation */
+            animation: fade-in 1.5s ease-out forwards;
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Custom red shades for the new theme */
+        .text-primary-red { color: var(--red-primary); }
+        .bg-primary-red { background-color: var(--red-primary); }
+        .hover\:bg-primary-red-dark:hover { background-color: var(--red-dark); }
+        .border-primary-red { border-color: var(--red-primary); }
+        .text-accent-red { color: var(--red-accent); }
+        .bg-red-light-translucent { background-color: rgba(255, 59, 59, 0.1); } /* Very light red for subtle accents */
+
+        /* Apply Playfair Display to general headings */
+        h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Apply Great Vibes specifically to the main heading */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            /* Apply the glow effect to the h1 title */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), /* Sharper, brighter core glow */
+                         0 0 15px rgba(255, 255, 255, 0.5), /* Softer, wider glow */
+                         1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle dark outline for readability */
+            transition: text-shadow 0.3s ease-in-out; /* Smooth transition for hover effect */
+        }
+        h1:hover {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 1), /* Intensified core glow on hover */
+                         0 0 20px rgba(255, 255, 255, 0.7), /* Intensified wider glow on hover */
+                         1px 1px 3px rgba(0, 0, 0, 0.8); /* Slightly more defined dark outline on hover */
+        }
+
+
+        /* Styling for clickable prices */
+        .price-cell {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            border-radius: 0.5rem; /* Rounded corners for cells */
+        }
+        .price-cell:hover {
+            background-color: rgba(255, 60, 60, 0.2); /* Light red hover effect */
+        }
+        .price-cell.selected {
+            background-color: var(--red-primary); /* Primary red background when selected */
+            color: #FFFFFF; /* White text for contrast */
+            font-weight: 600;
+        }
+
+        /* Enhanced shadow for main containers */
+        .shadow-lg-red {
+            box-shadow: 0 10px 20px -5px rgba(229, 62, 62, 0.2), 0 4px 6px -2px rgba(229, 62, 62, 0.1);
+        }
+
+        /* Custom glow for the button (already defined, now also applied to h1) */
+        .button-glow-white {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+        .button-glow-white:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <header class="w-full max-w-4xl text-center mb-12 bg-black bg-opacity-20 p-8 rounded-2xl shadow-lg shadow-lg-red">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-primary-red mb-4">
+                Waxedxnancy
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-200 mb-6">Achieve silky smooth skin with professional care.</p>
+            <!-- Gallery Button -->
+            <a href="#gallery" class="py-3 px-8 bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60 text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105 button-glow-white inline-block">
+                Gallery
+            </a>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="w-full max-w-4xl bg-black bg-opacity-20 p-8 rounded-2xl shadow-xl shadow-lg-red space-y-10 text-gray-200">
+
+            <!-- Must Follow to Book Section -->
+            <section class="border-b pb-8 border-gray-700">
+                <h2 class="text-3xl sm:text-4xl font-bold text-accent-red mb-6 flex items-center">
+                    <svg class="w-8 h-8 mr-3 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Must Follow to Book
+                </h2>
+                <!-- Content for "Must Follow to Book" goes here if provided -->
+            </section>
+
+            <!-- Cancellations & Late Arrivals Section -->
+            <section class="border-b pb-8 border-gray-700">
+                <h2 class="text-3xl sm:text-4xl font-bold text-accent-red mb-6 flex items-center">
+                    <svg class="w-8 h-8 mr-3 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    Cancellations & Late Arrivals
+                </h2>
+                <div class="space-y-4 text-lg sm:text-xl text-gray-200">
+                    <p><span class="font-semibold text-gray-100">Cancellations/Rescheduling:</span> I would greatly appreciate it if any cancellations or rescheduling be done at least 24-48 hours before your appointment.</p>
+                    <p><span class="font-semibold text-gray-100">Late Arrivals:</span> Please be on time for your appointments. A 15-minute grace period will be given, but after this, your appointment will be canceled. 30 minutes late = appointment canceled.</p>
+                </div>
+            </section>
+
+            <!-- Services & Pricing Section -->
+            <section>
+                <h2 class="text-3xl sm:text-4xl font-bold text-accent-red mb-6 flex items-center">
+                    <svg class="w-8 h-8 mr-3 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v14m-7 0h14a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Services & Pricing
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-black bg-opacity-10 rounded-lg shadow-md">
+                        <thead>
+                            <tr class="bg-red-light-translucent text-gray-100 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-left rounded-tl-lg">Service</th>
+                                <th class="py-3 px-6 text-right rounded-tr-lg">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="servicesTableBody" class="text-gray-200 text-lg sm:text-xl font-light">
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Upper Lip</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Upper Lip" data-price="5">$5</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Chin</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Chin" data-price="5">$5</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Underarms</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Underarms" data-price="10">$10</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Stomach</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Stomach" data-price="20">$20</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Back</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Back" data-price="25">$25</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Brazilian</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Brazilian" data-price="35">$35</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Bikini Line</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Bikini Line" data-price="17">$17</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Full Leg</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Full Leg" data-price="45">$45</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Half Leg (Upper/Lower)</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Half Leg" data-price="22">$22</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left">Full Arm</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Full Arm" data-price="30">$30</td>
+                            </tr>
+                            <tr class="hover:bg-black hover:bg-opacity-20">
+                                <td class="py-3 px-6 text-left rounded-bl-lg">Half Arm (Upper/Lower)</td>
+                                <td class="py-3 px-6 text-right price-cell" data-service="Half Arm" data-price="15">$15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Calculation Display Area -->
+                <div class="mt-8 p-6 bg-black bg-opacity-10 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-accent-red mb-4">Your Selection</h3>
+                    <div id="selectedServicesList" class="space-y-2 text-lg sm:text-xl text-gray-200 mb-4">
+                        <!-- Selected services will be listed here -->
+                        <p class="text-gray-400" id="noSelectionMessage">Click on a price to add a service.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-4">
+                        <p class="text-2xl font-bold text-primary-red">Total:</p>
+                        <p id="totalPriceDisplay" class="text-3xl font-extrabold text-primary-red">$0.00</p>
+                    </div>
+                    <button id="resetButton" class="mt-6 w-full py-3 px-4 bg-primary-red hover:bg-primary-red-dark text-white font-bold rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:scale-105">
+                        Reset Selection
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="w-full max-w-4xl text-center mt-12 p-6 bg-black bg-opacity-20 text-gray-200 rounded-2xl shadow-xl shadow-lg-red">
+            <h2 class="text-2xl font-bold mb-4">Contact Waxedxnancy</h2>
+            <p class="text-lg sm:text-xl">
+                For bookings and inquiries, please reach out directly.
+            </p>
+            <p class="mt-4 text-sm text-gray-400">&copy; 2025 Waxedxnancy. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to elements
+            const servicesTableBody = document.getElementById('servicesTableBody');
+            const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+            const selectedServicesList = document.getElementById('selectedServicesList');
+            const resetButton = document.getElementById('resetButton');
+            const noSelectionMessage = document.getElementById('noSelectionMessage');
+
+            let totalPrice = 0;
+            // Using a Map to store selected services for easier management (serviceName -> price)
+            let selectedServices = new Map();
+
+            /**
+             * Updates the displayed total price and the list of selected services.
+             */
+            function updateDisplay() {
+                totalPriceDisplay.textContent = `$${totalPrice.toFixed(2)}`;
+                selectedServicesList.innerHTML = ''; // Clear previous list
+
+                if (selectedServices.size === 0) {
+                    noSelectionMessage.style.display = 'block';
+                } else {
+                    noSelectionMessage.style.display = 'none';
+                    selectedServices.forEach((price, service) => {
+                        const li = document.createElement('p');
+                        li.textContent = `${service}: $${price.toFixed(2)}`;
+                        li.classList.add('text-gray-200'); // Adjusted for new color scheme
+                        selectedServicesList.appendChild(li);
+                    });
+                }
+            }
+
+            // Event listener for clicking on price cells
+            servicesTableBody.addEventListener('click', (event) => {
+                const clickedCell = event.target.closest('.price-cell');
+
+                // Check if a price cell was clicked and it has a data-price attribute
+                if (clickedCell && clickedCell.dataset.price) {
+                    const serviceName = clickedCell.dataset.service;
+                    const price = parseFloat(clickedCell.dataset.price);
+
+                    if (clickedCell.classList.contains('selected')) {
+                        // Service is already selected, so deselect it
+                        clickedCell.classList.remove('selected');
+                        totalPrice -= price;
+                        selectedServices.delete(serviceName);
+                    } else {
+                        // Service is not selected, so select it
+                        clickedCell.classList.add('selected');
+                        totalPrice += price;
+                        selectedServices.set(serviceName, price);
+                    }
+                    updateDisplay();
+                }
+            });
+
+            // Event listener for the reset button
+            resetButton.addEventListener('click', () => {
+                totalPrice = 0;
+                selectedServices.clear();
+                // Remove 'selected' class from all price cells
+                document.querySelectorAll('.price-cell.selected').forEach(cell => {
+                    cell.classList.remove('selected');
+                });
+                updateDisplay();
+            });
+
+            // Initial display update
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>
